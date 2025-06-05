@@ -1,0 +1,20 @@
+// MainActivity.java (simplified for fetching data)
+public class MainActivity extends AppCompatActivity {
+    TextView jobsView;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        jobsView = findViewById(R.id.jobsView);
+        fetchJobs();
+    }
+
+    private void fetchJobs() {
+        String url = "http://yourdomain.com/get_jobs.php"; // your PHP API
+        RequestQueue queue = Volley.newRequestQueue(this);
+        StringRequest request = new StringRequest(Request.Method.GET, url,
+            response -> jobsView.setText(response),
+            error -> jobsView.setText("Failed to fetch jobs"));
+        queue.add(request);
+    }
+}
