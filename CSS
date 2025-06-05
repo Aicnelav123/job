@@ -1,0 +1,13 @@
+<?php
+$conn = new mysqli("localhost", "username", "password", "database");
+$result = $conn->query("SELECT * FROM jobs");
+while($row = $result->fetch_assoc()) {
+    echo "<div class='job-posting'>";
+    echo "<h2>" . $row['title'] . "</h2>";
+    echo "<p><strong>Company:</strong> " . $row['company'] . "</p>";
+    echo "<p><strong>Location:</strong> " . $row['location'] . "</p>";
+    echo "<p><strong>Description:</strong> " . $row['description'] . "</p>";
+    echo "<button class='apply-btn'>Apply Now</button>";
+    echo "</div>";
+}
+?>
